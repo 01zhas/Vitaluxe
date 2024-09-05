@@ -1,0 +1,38 @@
+{% load static %}
+
+<head>
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/advertisement.css' %}">
+</head>
+
+<body>
+
+    <div class="banner-content">
+        <div class="title">
+            <h1>{{ advertisement.title }}</h1>
+        </div>
+    
+        <div class="text">
+            <p>{{ advertisement.text }}</p>
+        </div>
+    
+        <div class="shop_now_button">
+            <a href="{% url 'shop_all' %}" class="btn">Shop now</a>
+        </div>
+    </div>
+
+    <div class="banner">
+        {% if advertisement.banner %}
+            {% if is_video %}
+                <video controls>
+                    <source src="{{ advertisement.banner.url }}" type="video/mp4">
+                </video>
+            {% else %}
+                <img src="{{ advertisement.banner.url }}" alt="Banner">
+            {% endif %}
+        {% else %}
+            <p>Banner is missing</p>
+        {% endif %}
+    </div>
+    
+</body>
