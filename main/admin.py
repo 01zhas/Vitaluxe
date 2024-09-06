@@ -3,7 +3,7 @@ from .models import Advertisement
 
 
 class AdvertisementAdmin(admin.ModelAdmin):
-    list_display = ('title', 'published_date')
+    list_display = ('title',)
     search_fields = ('title',)
 
 

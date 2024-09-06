@@ -3,6 +3,15 @@ from .models import Advertisement
 
 
 def home(request):
+    advertisement = Advertisement.objects.last()
+
+    is_video = advertisement.banner.url.endswith('.mp4') if advertisement.banner else False
+    
+    return render(request, 'main/home.html', {
+        'advertisement': advertisement,
+        'is_video': is_video
+    })
+
     return render(request, 'main/home.html')
 
 
@@ -18,14 +27,3 @@ def ingredients(request):
     return render(request, 'main/ingredients.html')
 
 
-def advertisement_view(request):
-    # Получаем последнюю запись из таблицы Advertisement
-    advertisement = Advertisement.objects.last()
-
-    # Проверяем, является ли баннер видео (оканчивается на .mp4)
-    is_video = advertisement.banner.url.endswith('.mp4') if advertisement.banner else False
-    
-    return render(request, 'main/advertisement.html', {
-        'advertisement': advertisement,
-        'is_video': is_video
-    })
